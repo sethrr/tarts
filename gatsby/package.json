@@ -14,7 +14,6 @@
     "netlify": "netlify dev",
     "prebuild": "netlify-lambda install"
   },
-
   "dependencies": {
     "babel-plugin-styled-components": "^1.11.1",
     "dotenv": "^8.2.0",

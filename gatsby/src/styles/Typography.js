@@ -34,7 +34,6 @@ const Typography = createGlobalStyle`
   }
   mark, .mark {
     color: var(--primary);
-    border: 5px solid var(--primary);
     padding: 5px;
     margin: 0;
     display: inline;

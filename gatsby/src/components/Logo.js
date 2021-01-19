@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import stripes from '../assets/images/stripes.svg';
-import dots from '../assets/images/dots.svg';
+import sprinkles from '../assets/images/sprinks223.svg';
 
 const LogoStyles = styled.div`
   /* This value controls the entire size of the logo*/
@@ -12,17 +12,22 @@ const LogoStyles = styled.div`
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
   margin: 0;
   --borderSize: 1em;
-  background: white url(${stripes});
+  background: white ;
   background-size: 150em;
-  border: var(--borderSize) solid white;
+  border: var(--borderSize) solid var(--primary);
+  border-radius: 25px;
+
   display: flex;
   .inner {
     margin: var(--borderSize);
     flex: 1;
-    background: var(--lightbrown);
+    background: var(--lightbrown) url(${sprinkles});
     display: grid;
-    grid-template-rows: 20% 30% 30%;
+    grid-template-rows: 25% 25% 25%;
     align-content: center;
+    border-radius: 45px;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
   .est {
     font-size: 1.5em;
@@ -42,11 +47,7 @@ const LogoStyles = styled.div`
   .slices {
     font-size: 3.2em;
     letter-spacing: 0.2em;
-    transform: translateY(-0.15em);
 
-    &-last {
-      margin-top: -1rem;
-    }
   }
   .slicks {
     transform: scale(1.4);
@@ -68,6 +69,7 @@ const LogoStyles = styled.div`
     display: inline-block;
     line-height: 1;
     transition: transform 0.3s;
+  
     &.S {
       --translateX: -0.05;
     }
