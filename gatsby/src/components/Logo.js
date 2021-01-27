@@ -19,7 +19,7 @@ const LogoStyles = styled.div`
 
   display: flex;
   .inner {
-    margin: var(--borderSize);
+    margin: 1.25rem;
     flex: 1;
     background: var(--lightbrown) url(${sprinkles});
     display: grid;
