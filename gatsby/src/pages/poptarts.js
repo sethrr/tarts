@@ -1,20 +1,22 @@
 import { graphql } from 'gatsby';
 import React from 'react';
 import PoptartsList from '../components/PoptartsList';
-import ToppingsFilters from '../components/ToppingFilter';
+import ToppingsFilters from '../components/FrostingFilter';
 
-export default function PoptartsPage({ data }) {
+export default function PoptartsPage({ data, pageContext }) {
   const tarts = data.poptarts.nodes;
   return (
     <>
-      <ToppingsFilters />
+      <ToppingsFilters activeFrosting={pageContext.frosting}/>
       <PoptartsList tarts={tarts} />
     </>
   );
 }
 export const query = graphql`
-  query allTarts {
-    poptarts: allSanityPoptarts {
+  query allTarts ($frosting: [String]) {
+    poptarts: allSanityPoptarts(filter: { frosting: { elemMatch: { name: { in: $frosting } } } }     
+    )
+     {
       nodes {
         name
         price

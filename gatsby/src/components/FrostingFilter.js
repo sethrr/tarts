@@ -11,21 +11,29 @@ const FrostingStyles = styled.div`
         a {
             display: grid;
             grid-template-columns: auto 1fr;
-            padding: 5px;
+            padding: 5px 10px;
             align-items: center;
-            background: var(--primary);
+            border: 2px solid var(--primary);
             border-radius: 3px;
-            color: white;
+            color: var(--primary);
 
             .count {
-                background: var(--primary-light);
+				border: 2px solid var(--primary);
                 padding: 2px 10px;
-                color: black;
+				color: var(--primary);
+				background: var(--primary-light);
                 margin-left: 5px;
                 border-radius: 5px;
-            }
-            .active {
-                background: var(--yellow);
+			}
+			
+            &[aria-current="page"] {
+				background: var(--primary);
+				color: white;
+
+				.count {
+					background: var(--primary-light);
+					color: var(--primary);
+				}
             }
         }   
 `;
@@ -50,7 +58,7 @@ function countTartsInFrostings(tarts) {
 	return sortedFrostings;
 }
 
-export default function ToppingsFilters() {
+export default function ToppingsFilters({ activeFrosting }) {
 	const { toppings, tarts } = useStaticQuery(graphql`
 		query {
 			toppings: allSanityFrosting {
@@ -75,9 +83,12 @@ export default function ToppingsFilters() {
 
 	return (
         <FrostingStyles>
-			
+			<Link to="/poptarts">
+				<span className="name">All</span>
+				<span className="count">{tarts.nodes.length}</span>
+			</Link>
             {frostingsWithCount.map((frosting => (
-                <Link to={`/frosting/${frosting.name}`} key="{frosting.id}">
+                <Link to={`/frosting/${frosting.name}`} key={frosting.id} className={frosting.name === activeFrosting ? 'active' : ''}>
                 <span className="name">{frosting.name}</span>
                 <span className="count">{frosting.count}</span>
                 </Link>
