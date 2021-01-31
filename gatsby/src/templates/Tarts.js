@@ -2,6 +2,7 @@ import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import styled from 'styled-components';
+import SEO from '../components/SEO';
 
 const TartGrid = styled.div`
 display: grid;
@@ -12,6 +13,8 @@ grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
 export default function SingleTartsPage( {data: {tart}}) {
   
   return (
+    <>
+    <SEO title={tart.name} image={tart.image?.asset?.fluid?.src} />
     <TartGrid>
       <Img fluid={tart.image.asset.fluid} />
       <div>
@@ -23,6 +26,7 @@ export default function SingleTartsPage( {data: {tart}}) {
         </ul>
       </div>
     </TartGrid>
+    </>
   )
 }
 
