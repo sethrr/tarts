@@ -4,20 +4,27 @@ import OrderStyles from '../styles/OrderStyles';
 import MenuItemStyles from '../styles/MenuItemStyles';
 import useForm from '../utils/useForm';
 import calculateTartPrice from '../utils/calculateTartPrice';
+import calculateOrderTotal from '../utils/calculateOrderTotal';
 import formatMoney from '../utils/formatMoney';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
+import useTart from '../utils/useTart';
+import TartOrder from '../components/TartOrder';
 
 export default function OrderPage( { data }) {
+  const tarts = data.poptarts.nodes;
 const { values, updateValue } = useForm({
   name: '',
   email: '',
 })
-const tarts = data.poptarts.nodes;
+const {order, addToOrder, removeFromOrder, error, loading, message, submitOrder } = useTart({tarts , values: values});
+if (message) {
+  return <p>{message}</p>
+}
   return (
     <>
      <SEO title="Order a Poptart!" />
-      <OrderStyles>
+      <OrderStyles onSubmit={submitOrder}>
         <fieldset>
           <legend>Your Info</legend>
           <label htmlFor="name">
@@ -57,7 +64,13 @@ const tarts = data.poptarts.nodes;
               </div>
               <div>
                 {['Half', 'Full', 'Two'].map((size) => (
-                  <button key={size} type="button">
+                  <button 
+                  key={size} 
+                  type="button" 
+                  onClick={() => addToOrder({
+                    id: tart.id,
+                    size,
+                  })}>
                     {size} {formatMoney(calculateTartPrice(tart.price, size))}
                   </button>
                 ))}
@@ -67,6 +80,16 @@ const tarts = data.poptarts.nodes;
         </fieldset>
         <fieldset className="order">
           <legend>Order</legend>
+          <TartOrder order={order} removeFromOrder={removeFromOrder} tarts={tarts} ></TartOrder>
+        </fieldset>
+        <fieldset>
+          <h3>
+            Your Total is {formatMoney(calculateOrderTotal(order, tarts))}
+          </h3>
+          <div>{error ? <p> Error: {error}</p> : ''}</div>
+          <button type="submit" disabled={loading}>
+            {loading ? ' Placing order..' : 'Order ahead'}
+            </button>
         </fieldset>
       </OrderStyles>
     </>

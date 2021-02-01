@@ -14,7 +14,7 @@ export default function PoptartsPage({ data, pageContext }) {
     <SEO title={pageContext.frosting ? `Poptarts with ${pageContext.frosting}` : `All Poptarts` } />
       <ToppingsFilters activeFrosting={pageContext.frosting}/>
       <PoptartsList tarts={tarts} />
-      <Pagination pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)} totalCount={data.poptarts.totalCount} currentPage={pageContext.currentPage || 1} skip={pageContext.skip} base="/poptarts" />
+      {/* <Pagination pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)} totalCount={data.poptarts.totalCount} currentPage={pageContext.currentPage || 1} skip={pageContext.skip} base="/poptarts" /> */}
     </div>
   );
 } 
