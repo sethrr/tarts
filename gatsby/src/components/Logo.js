@@ -19,13 +19,12 @@ const LogoStyles = styled.div`
 
   display: flex;
   .inner {
-    margin: 1.25rem;
     flex: 1;
     background: var(--lightbrown) url(${sprinkles});
     display: grid;
     grid-template-rows: 25% 25% 25%;
     align-content: center;
-    border-radius: 45px;
+    border-radius: 15px;
     background-size: cover;
     background-repeat: no-repeat;
   }

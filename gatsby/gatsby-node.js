@@ -1,3 +1,4 @@
+
 import path from 'path';
 import fetch from 'isomorphic-fetch';
 
@@ -40,18 +41,21 @@ async function turnTartsIntoPages({
 
   const pageSize = parseInt(process.env.GATSBY_PAGE_SIZE);
   const pageCount = Math.ceil(data.tarts.totalCount / pageSize);
-  
-  Array.from({length: pageCount}).forEach((_, i) => {
+
+  // 4. Loop from 1 to n and create the pages for them
+  Array.from({ length: pageCount }).forEach((_, i) => {
+    console.log(`Creating page ${i}`);
     actions.createPage({
-      path: `/poptarts/${i + 1}`,
+      path: `/tarts/${i + 1}`,
       component: path.resolve('./src/pages/poptarts.js'),
+      // This data is pass to the template when we create it
       context: {
         skip: i * pageSize,
         currentPage: i + 1,
         pageSize,
-      }
-    })
-  })
+      },
+    });
+  });
 }
 
 async function turnFrostingsIntoPages({

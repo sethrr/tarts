@@ -1,6 +1,7 @@
 import { useStaticQuery } from 'gatsby';
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { graphql } from 'gatsby';
 
 export default function SEO( {children, location, description, title, image}) {
 

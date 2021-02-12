@@ -4,6 +4,7 @@ import Img from 'gatsby-image'
 import styled from 'styled-components';
 
 function SingleTart({ tart }) {
+  console.log(tart);
   return (
     <TartStyles>
       <Link to={`/poptart/${tart.slug.current}`}>
@@ -18,7 +19,7 @@ function SingleTart({ tart }) {
 }
 
 
-const TartGridStytles = styled.div`
+const TartGridStyles = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 4rem;
@@ -44,10 +45,11 @@ h2, p {
 
 export default function PoptartsList({ tarts }) {
   return (
-    <TartGridStytles>
+    <TartGridStyles>
       {tarts.map((tart) => (
-        <SingleTart key={tart.id} tart={tart} />
+        <SingleTart key={`tart-${tart.id}`} tart={tart} />
+        
       ))}
-    </TartGridStytles>
+    </TartGridStyles>
   );
 }

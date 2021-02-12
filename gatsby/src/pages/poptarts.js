@@ -8,18 +8,24 @@ import SEO from '../components/SEO';
 
 export default function PoptartsPage({ data, pageContext }) {
   const tarts = data.poptarts.nodes;
-  console.log(tarts.name);
+  console.log(tarts);
   return (
     <div>
     <SEO title={pageContext.frosting ? `Poptarts with ${pageContext.frosting}` : `All Poptarts` } />
-      <ToppingsFilters activeFrosting={pageContext.frosting}/>
+      <ToppingsFilters activeFrosting={pageContext.frosting}/> 
       <PoptartsList tarts={tarts} />
-      {/* <Pagination pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)} totalCount={data.poptarts.totalCount} currentPage={pageContext.currentPage || 1} skip={pageContext.skip} base="/poptarts" /> */}
+       {/* <Pagination
+        pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}
+        totalCount={data.poptarts.totalCount}
+        currentPage={pageContext.currentPage || 1}
+        skip={pageContext.skip}
+        base="/poptarts"
+      />  */}
     </div>
   );
 } 
 export const query = graphql`
-query allTarts ($frosting: [String], $skip: Int = 0, $pageSize: Int = 2) {
+query allTarts ($frosting: [String], $skip: Int = 0, $pageSize: Int = 8) {
   poptarts: allSanityPoptarts(filter: 
     { frosting: 
       { elemMatch: 
@@ -27,7 +33,8 @@ query allTarts ($frosting: [String], $skip: Int = 0, $pageSize: Int = 2) {
           { in: $frosting }
         } 
       }
-    }, limit: $pageSize, skip: $skip)
+    }, 
+    limit: $pageSize, skip: $skip)
      {
       totalCount
       nodes { 
