@@ -2,3 +2,5 @@ node_modules/
 gatsby/.cache/
 gatsby/.vscode/
 sanity/sample-data/
+.vscode/
+gatsby/.env
