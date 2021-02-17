@@ -4,7 +4,7 @@ import calculateOrderTotal from './calculateOrderTotal';
 import formatMoney from './formatMoney';
 import attachNamesAndPrices from './attachNamesAndPrices';
 
-export default function useTart({ tarts, values }) {
+export default function usePizza({ tarts, values }) {
   // 1. Create some state to hold our order
   // We got rid of this line because we moved useState up to the provider
   // const [order, setOrder] = useState([]);
