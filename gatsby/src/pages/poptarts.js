@@ -8,7 +8,7 @@ import SEO from '../components/SEO';
 
 export default function PoptartsPage({ data, pageContext }) {
   const tarts = data.poptarts.nodes;
-  console.log(tarts);
+ 
   return (
     <div>
     <SEO title={pageContext.frosting ? `Poptarts with ${pageContext.frosting}` : `All Poptarts` } />

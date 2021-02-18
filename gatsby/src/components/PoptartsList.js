@@ -4,7 +4,7 @@ import Img from 'gatsby-image'
 import styled from 'styled-components';
 
 function SingleTart({ tart }) {
-  console.log(tart);
+  
   return (
     <TartStyles>
       <Link to={`/poptart/${tart.slug.current}`}>

@@ -6,7 +6,7 @@ import ItemGrid from '../components/ItemGrid';
  
 
 function CurrentlyFeatured( { featuredTarts }) {
-  console.log(featuredTarts);
+ 
   return (
     <div>
       <h2 class="center">

@@ -44,7 +44,7 @@ async function turnTartsIntoPages({
 
   // 4. Loop from 1 to n and create the pages for them
   Array.from({ length: pageCount }).forEach((_, i) => {
-    console.log(`Creating page ${i}`);
+
     actions.createPage({
       path: `/tarts/${i + 1}`,
       component: path.resolve('./src/pages/poptarts.js'),
