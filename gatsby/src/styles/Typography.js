@@ -1,21 +1,14 @@
 import { createGlobalStyle } from 'styled-components';
 
-import font from '../assets/fonts/Kollektif.woff';
-import boldFont from '../assets/fonts/Kollektif-Bold.woff';
+import font from '../assets/fonts/frenchfries.woff';
 
 const Typography = createGlobalStyle`
   @font-face {
-    font-family: Kollektif;
+    font-family: FrenchFries;
     src: url(${font});
   }
-  @font-face {
-    font-family: Kollektif;
-    src: url(${boldFont});
-    font-weight: bold;
-  }
-
   html {
-    font-family: Kollektif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: FrenchFries, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     color: var(--black);
   }
   p, li {
@@ -25,20 +18,22 @@ const Typography = createGlobalStyle`
     font-weight: normal;
     margin: 0;
   }
+
+  h1, h2 {
+    margin-bottom: 2rem;
+  }
   a {
     color: var(--black);
-    text-decoration-color: var(--primary-light);
+    text-decoration-color: var(--red);
     /* Chrome renders this weird with this font, so we turn it off */
     text-decoration-skip-ink: none;
-    text-decoration: none;
   }
   mark, .mark {
-    color: var(--primary);
-    padding: 5px;
+    background: var(--yellow);
+    padding: 0 2px 2px 2px;
     margin: 0;
     display: inline;
     line-height: 1;
-    text-decoration: none;
   }
 
   .center {

@@ -2,17 +2,13 @@ import { createGlobalStyle } from 'styled-components';
 import bg from '../assets/images/bg.svg';
 import stripes from '../assets/images/stripes.svg';
 
-
 const GlobalStyles = createGlobalStyle`
   :root {
     --red: #FF4949;
     --black: #2E2E2E;
-    --yellow: #ffc600;
+    --yellow: #9cd5e2;
     --white: #fff;
     --grey: #efefef;
-    --primary-light: #a275a7;
-    --primary: #1fd6f3;
-    --brown: #bd906f;
     --lightbrown: #f9f3ef;
     --primary: #e2a99c;
     --primary-light: #f4f4e9; 
@@ -23,7 +19,6 @@ const GlobalStyles = createGlobalStyle`
     background-size: 450px;
     background-attachment: fixed;
     font-size: 10px;
-
   }
 
   body {
@@ -36,7 +31,7 @@ const GlobalStyles = createGlobalStyle`
   }
 
   button {
-    background: var(--primary);
+    background: var(--red);
     color: white;
     border: 0;
     padding: 0.6rem 1rem;
@@ -51,7 +46,7 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
-  ${`.gatsby-image-wrapper img[src*=base64\\,]`} {
+  .gatsby-image-wrapper img[src*=base64\\,] {
     image-rendering: -moz-crisp-edges;
     image-rendering: pixelated;
   }
@@ -62,13 +57,13 @@ const GlobalStyles = createGlobalStyle`
   }
   html {
     scrollbar-width: thin;
-    scrollbar-color: var(--primary) var(--white);
+    scrollbar-color: var(--red) var(--white);
   }
   body::-webkit-scrollbar-track {
     background: var(--white);
   }
   body::-webkit-scrollbar-thumb {
-    background-color: var(--primary) ;
+    background-color: var(--red) ;
     border-radius: 6px;
     border: 3px solid var(--white);
   }
@@ -89,7 +84,6 @@ const GlobalStyles = createGlobalStyle`
     position: relative;
     display: inline-block;
   }
-  
 
 `;
 

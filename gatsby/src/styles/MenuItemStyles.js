@@ -18,6 +18,7 @@ const MenuItemStyles = styled.div`
   button {
     font-size: 1.5rem;
   }
+
   button + button {
     margin-left: 1rem;
   }
@@ -30,7 +31,6 @@ const MenuItemStyles = styled.div`
     right: 0;
     box-shadow: none;
     line-height: 1rem;
-    p
   }
 `;
 
