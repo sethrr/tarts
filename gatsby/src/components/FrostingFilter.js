@@ -8,6 +8,7 @@ const FrostingStyles = styled.div`
     flex-wrap: wrap;
     gap: 1rem;
     margin-bottom: 4rem;
+    margin-top:2rem;
         a {
             display: grid;
             grid-template-columns: auto 1fr;
@@ -82,6 +83,8 @@ export default function ToppingsFilters({ activeFrosting }) {
 	const frostingsWithCount = countTartsInFrostings(tarts.nodes);
 
 	return (
+	
+		
         <FrostingStyles>
 			<Link to="/poptarts">
 				<span className="name">All</span>
@@ -96,5 +99,6 @@ export default function ToppingsFilters({ activeFrosting }) {
             )}
         
 		</FrostingStyles>
+		
 	);
 }

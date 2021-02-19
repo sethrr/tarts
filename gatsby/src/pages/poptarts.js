@@ -4,7 +4,7 @@ import PoptartsList from '../components/PoptartsList';
 import ToppingsFilters from '../components/FrostingFilter';
 import Pagination from '../components/pagination';
 import SEO from '../components/SEO';
-
+import HeadingStyles from '../styles/HeadingStyles';
 
 export default function PoptartsPage({ data, pageContext }) {
   const tarts = data.poptarts.nodes;
@@ -13,6 +13,7 @@ export default function PoptartsPage({ data, pageContext }) {
     <div>
     <SEO title={pageContext.frosting ? `Poptarts with ${pageContext.frosting}` : `All Poptarts` } />
       <ToppingsFilters activeFrosting={pageContext.frosting}/> 
+      <HeadingStyles><h2> Filter By Frosting:</h2></HeadingStyles>
       <PoptartsList tarts={tarts} />
        {/* <Pagination
         pageSize={parseInt(process.env.GATSBY_PAGE_SIZE)}

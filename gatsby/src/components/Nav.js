@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import Logo from './Logo';
 
 const NavStyles = styled.nav`
-  margin-bottom: 3rem;
   .logo {
     transform: translateY(-25%);
   }
@@ -43,9 +42,6 @@ const NavStyles = styled.nav`
     &:hover {
       color: var(--primary);
     }
-    /* &[aria-current='page'] {
-      color: var(--primary);
-    } */
   }
 `;
 

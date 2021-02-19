@@ -3,6 +3,7 @@ const gql = String.raw;
 export default function useLatestData() {
   // hot slices
   const [featuredTarts, setfeaturedTarts] = useState();
+  const [featuredImage, setFeaturedImage] = useState();
   // slicemasters
   // Use a side effect to fetcht he data from the graphql endpoint
   useEffect(function () {
@@ -30,7 +31,14 @@ export default function useLatestData() {
                                     }
                                 }
                             }
-                            
+                             featuredImage {
+                      asset {
+                        url 
+                        metadata {
+                          lqip
+                        }
+                      }
+                      }
                       }
                 }
         `,
@@ -38,12 +46,14 @@ export default function useLatestData() {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res.data)
+        console.log(res.data.StoreSettings.featuredImage)
         setfeaturedTarts(res.data.StoreSettings.featuredTarts);
+        setFeaturedImage(res.data.StoreSettings.featuredImage)
 
       });
   }, []);
   return {
     featuredTarts,
+    featuredImage
   };
 }

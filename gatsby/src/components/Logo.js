@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import stripes from '../assets/images/stripes.svg';
 import sprinkles from '../assets/images/sprinks223.svg';
 
+
 const LogoStyles = styled.div`
   /* This value controls the entire size of the logo*/
   font-size: 6px;
@@ -21,6 +22,7 @@ const LogoStyles = styled.div`
   .inner {
     flex: 1;
     background: var(--lightbrown) url(${sprinkles});
+
     display: grid;
     grid-template-rows: 25% 25% 25%;
     align-content: center;
@@ -39,7 +41,7 @@ const LogoStyles = styled.div`
     align-items: center;
     margin: 0;
     grid-row: 2 / span 2;
-    grid-gap: 1em;
+    grid-gap: 1.25rem;
     transform: translateY(-0.7em);
   }
 
@@ -49,7 +51,7 @@ const LogoStyles = styled.div`
 
   }
   .slicks {
-    transform: scale(1.4);
+    transform: scale(1.3);
     display: block;
     text-shadow: 0.18em 0.18em 0 rgba(0, 0, 0, 0.05);
     perspective: 100px;
@@ -110,7 +112,7 @@ export default function Logo() {
     <LogoStyles className="logo">
     <div className="inner">
       <span className="slices">THE</span>
-      <h1>
+      <h1 class="h5-style">
         <span className="slicks">
           <span className="letter">T</span>
           <span className="letter">O</span>

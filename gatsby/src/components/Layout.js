@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Footer from './Footer';
 import Nav from './Nav';
+import GlobalAlert from './GlobalAlert';
 import 'normalize.css';
 import GlobalStyles from '../styles/GlobalStyles';
 import Typography from '../styles/Typography';
@@ -36,6 +37,7 @@ export default function Layout({ children }) {
       <SiteBorderStyles>
         <ContentStyles>
           <Nav />
+          <GlobalAlert />
           {children}
           <Footer />
         </ContentStyles>

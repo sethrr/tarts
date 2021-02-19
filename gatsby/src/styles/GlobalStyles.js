@@ -1,21 +1,23 @@
 import { createGlobalStyle } from 'styled-components';
 import bg from '../assets/images/bg.svg';
+import sprinks from '../assets/images/sprinkles.svg';
 import stripes from '../assets/images/stripes.svg';
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    --red: #FF4949;
+    --red: #8d6a62;
     --black: #2E2E2E;
-    --yellow: #9cd5e2;
+    --yellow: #e2a99c;
     --white: #fff;
     --grey: #efefef;
     --lightbrown: #f9f3ef;
-    --primary: #e2a99c;
-    --primary-light: #f4f4e9; 
+    --primary: #8d6a62;
+    --primary-light: #f4f4e9;
+    --secondary: #e2a99c; 
 
   }
   html {
-    background-image: url(${bg});
+    background-image: url(${sprinks});
     background-size: 450px;
     background-attachment: fixed;
     font-size: 10px;
@@ -46,7 +48,7 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
-  .gatsby-image-wrapper img[src*=base64\\,] {
+  .gatsby-image-wrapper img[src*="base64\\,"] {
     image-rendering: -moz-crisp-edges;
     image-rendering: pixelated;
   }
