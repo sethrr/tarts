@@ -10,6 +10,7 @@ import MenuItemStyles from '../styles/MenuItemStyles';
 import useTart from '../utils/useTart';
 import TartOrder from '../components/TartOrder';
 import calculateOrderTotal from '../utils/calculateOrderTotal';
+import styled from 'styled-components';
 
 export default function OrderPage({ data }) {
   const tarts = data.tarts.nodes;
@@ -30,6 +31,22 @@ export default function OrderPage({ data }) {
     tarts,
     values,
   });
+
+const TartStyles = styled.div` 
+display: grid;
+
+@supports not (grid-template-rows: subgrid) {
+--rows: auto auto 1fr;
+}
+
+grid-template-rows: var(--row, subgrid);
+grid-row: span 3;
+grid-gap: 1rem;
+
+h2, p {
+      margin: 0;
+    }
+`;
 
   if (message) {
     return <p>{message}</p>;
@@ -97,7 +114,7 @@ export default function OrderPage({ data }) {
             </MenuItemStyles>
           ))}
         </fieldset>
-        <fieldset disabled={loading} className="order">
+        {/* <fieldset disabled={loading} className="order">
           <legend>Order</legend>
           <TartOrder
             order={order}
@@ -113,7 +130,7 @@ export default function OrderPage({ data }) {
           <button type="submit" disabled={loading}>
             {loading ? 'Placing Order...' : 'Order Ahead'}
           </button>
-        </fieldset>
+        </fieldset> */}
       </OrderStyles>
     </>
   );
