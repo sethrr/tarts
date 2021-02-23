@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 
 const AlertStyles = styled.nav`
-  background: var(--red);
+  background: var(--yellow);
   display: flex;
   margin-bottom: 3rem;
 

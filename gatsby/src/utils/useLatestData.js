@@ -22,6 +22,9 @@ export default function useLatestData() {
                         featuredTarts {
                             name
                             _id
+                            slug {
+                                current
+                              }
                             image {
                                 asset {
                                     url 

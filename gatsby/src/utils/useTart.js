@@ -3,6 +3,7 @@ import OrderContext from '../components/OrderContext';
 import calculateOrderTotal from './calculateOrderTotal';
 import formatMoney from './formatMoney';
 import attachNamesAndPrices from './attachNamesAndPrices';
+import CartItemAdded from '../components/CartItemAdded';
 
 export default function usePizza({ tarts, values }) {
   // 1. Create some state to hold our order
@@ -13,10 +14,16 @@ export default function usePizza({ tarts, values }) {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-
+  const [cartMessage, setCartMessage] = useState('');
+  
   // 2. Make a function add things to order
   function addToOrder(orderedTart) {
     setOrder([...order, orderedTart]);
+    setCartMessage('Item has been added to your cart!');
+
+    setTimeout(() => {
+      setCartMessage(false);
+    }, 2000)
   }
   // 3. Make a function remove things from order
   function removeFromOrder(index) {
@@ -75,5 +82,7 @@ export default function usePizza({ tarts, values }) {
     loading,
     message,
     submitOrder,
+    cartMessage, 
+    // cartCount
   };
 }

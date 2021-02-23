@@ -8,16 +8,21 @@ const MenuItemStyles = styled.div`
   align-content: center;
   align-items: center;
   position: relative;
+
   .gatsby-image-wrapper {
     grid-row: span 2;
     height: 100%;
   }
+  
   .menu-item-info {
     display: flex;
     flex-direction: column;
   }
   p {
     margin: 0;
+  }
+  h2 {
+    margin-bottom: .5rem;
   }
   button {
     font-size: 1.5rem;

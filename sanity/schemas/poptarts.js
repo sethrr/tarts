@@ -23,6 +23,11 @@ export default {
       },
     },
     {
+      title: 'Description',
+      name: 'description',
+      type: 'text'
+    },
+    {
       name: 'image',
       title: 'Image',
       type: 'image',

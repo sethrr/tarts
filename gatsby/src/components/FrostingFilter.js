@@ -7,8 +7,8 @@ const FrostingStyles = styled.div`
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
-    margin-bottom: 4rem;
-    margin-top:2rem;
+    margin-bottom: 5rem;
+    margin-top:1rem;
         a {
             display: grid;
             grid-template-columns: auto 1fr;

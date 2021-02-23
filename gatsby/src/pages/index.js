@@ -43,7 +43,7 @@ function CurrentlyFeaturedImage ({ featuredImage }) {
       <HomeHeadline>
       <div className="hero">
 
-       {!featuredImage && <LoadingGrid count={1} />}
+      
                     {featuredImage && (
                        <img src={`${featuredImage.asset.url}`} 
                     alt="hero"

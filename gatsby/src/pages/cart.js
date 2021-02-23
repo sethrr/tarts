@@ -6,6 +6,7 @@ import TartOrder from '../components/TartOrder';
 import OrderContext from '../components/OrderContext';
 import useTart from '../utils/useTart';
 import calculateOrderTotal from '../utils/calculateOrderTotal';
+import { graphql } from 'gatsby';
 
 export default function OrderPage({ data }) {
   const tarts = data.tarts.nodes;
@@ -21,7 +22,7 @@ export default function OrderPage({ data }) {
     }
   }
   const getOrder = getLocalStorage("order");
-  console.log(getOrder);
+
   const {
     removeFromOrder,
     error,
@@ -30,7 +31,6 @@ export default function OrderPage({ data }) {
   } = useTart({
     tarts,
   });
-
 
   return (
     <>
@@ -45,16 +45,18 @@ export default function OrderPage({ data }) {
             removeFromOrder={removeFromOrder}
           />
         </fieldset>
+        <div>
         <fieldset disabled={loading}>
         <legend>Totals</legend>
           <h3>
             Your Total is {formatMoney(calculateOrderTotal(order, tarts))}
-          1</h3>
+          </h3>
           <div>{error ? <p>Error: {error}</p> : ''}</div>
           <button type="submit" disabled={loading}>
             {loading ? 'Placing Order...' : 'Order Ahead'}
           </button>
         </fieldset>
+        </div>
       </OrderStyles>
     </>
   );
@@ -71,7 +73,7 @@ export const query = graphql`
         price
         image {
           asset {
-            fluid(maxWidth: 100) {
+            fluid(maxWidth: 200) {
               ...GatsbySanityImageFluid
             }
           }

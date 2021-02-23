@@ -96,7 +96,7 @@ h2, p {
                 <h2>{tart.name}</h2>
               </div>
               <div>
-                {['Half', 'Full', 'Two'].map((size) => (
+                {['Half Dozen', 'Full Dozen', 'Two Dozen'].map((size) => (
                   <button
                     type="button"
                     key={size}

@@ -12,8 +12,11 @@ function SingleTart({ tart }) {
           <span className="mark">{tart.name}</span>
         </h2>
       </Link>
+
+      <Link to={`/poptart/${tart.slug.current}`}>
         <p> {tart.frosting.map((frosting) => frosting.name).join(', ')}</p>
-        <Img fluid={tart.image.asset.fluid} alt={tart.name}/>
+        <Img fluid={tart.image.asset.fluid} alt={tart.name} />
+      </Link>
     </TartStyles>
   );
 }
@@ -21,7 +24,7 @@ function SingleTart({ tart }) {
 
 const TartGridStyles = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 4rem;
 
 `;
@@ -30,16 +33,29 @@ const TartStyles = styled.div`
 display: grid;
 
 @supports not (grid-template-rows: subgrid) {
---rows: auto auto 1fr;
 }
 
-grid-template-rows: var(--row, subgrid);
-grid-row: span 3;
+--rows: auto  1fr;
+grid-template-rows: var(--rows, subgrid);
+grid-template-columns: 1fr;
+grid-row: span 2;
 grid-gap: 1rem;
+margin-bottom: 3rem;
 
-h2, p {
+a {
+  position: relative;
+overflow: hidden;
+}
+.gatsby-image-wrapper  {
+   height: 100%;
+  }
+h2, p, a {
       margin: 0;
     }
+p {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+}  
 `;
 
 

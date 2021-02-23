@@ -11,7 +11,7 @@ export default function TartOrder({ order, tarts, removeFromOrder}) {
     {order.map((singleOrder, index) => {
         const tart = tarts.find(tart => tart.id === singleOrder.id);
         return <MenuItemStyles key={`${singleOrder.id}-${index}`}>
-         <Img fluid={tart.image.asset.fluid}> </Img>
+        <Img fluid={`${tart.image.asset.fluid}?w=200&h=200&fit=crop`}></Img>
         <div className="menu-item-info">
         <h2> {tart.name}</h2>
         <span> {singleOrder.size}</span>

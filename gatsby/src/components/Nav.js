@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useContext} from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import Logo from './Logo';
+import OrderContext from '../components/OrderContext';
+
+
+
+
 
 const NavStyles = styled.nav`
   .logo {
@@ -38,14 +43,36 @@ const NavStyles = styled.nav`
   a {
     font-size: 3rem;
     text-decoration: none;
-      color: var(--primary);
-    &:hover {
-      color: var(--primary);
-    }
+     color: var(--primary);
+     position: relative;
+     &[data-cartcount] {
+            &:after {
+                content: attr(data-cartcount);
+                position: absolute;
+                width: 18px;
+                height: 18px;
+                font-size: 18px;
+                top: -7px;
+                right: -12px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 10px;
+                color: var(--red);
+                background: var(--yellow)
+             
+            }
+        }
   }
 `;
 
 export default function Nav() {
+  const getCount = useContext(OrderContext)[0].length;
+  // if (getCount == 0) {
+  //   getCount = null;
+  // }
+
+
   return (
     <NavStyles>
       <ul>
@@ -53,7 +80,7 @@ export default function Nav() {
           <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/poptarts/">Menu</Link>
+          <Link to="/about/">About</Link>
         </li>
         <li>
           <Link to="/">
@@ -61,10 +88,10 @@ export default function Nav() {
           </Link>
         </li>
         <li>
-          <Link to="/cart">Cart</Link>
+            <Link to="/poptarts/">Order Now</Link>
         </li>
         <li>
-          <Link to="/orders">Order Now</Link>
+          <Link to="/cart" data-cartcount={getCount !=0 ? getCount : null}>Cart</Link>
         </li>
       </ul>
     </NavStyles>

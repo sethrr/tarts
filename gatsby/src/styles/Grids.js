@@ -34,6 +34,9 @@ export const ItemStyles = styled.div`
     font-size: 2rem;
     font-size: clamp(12px, 5vw, 20px);
   }
+  button {
+    margin-top: 1rem;
+  }
   .mark {
     display: inline;
   }
