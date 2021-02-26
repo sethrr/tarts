@@ -90,39 +90,34 @@ async function turnFrostingsIntoPages({
   });
 }
 
-async function fetchApiAndTurnIntoNodes({
-  actions: {
-    createNode
-  },
-  createNodeId,
-  createContentDigest
-}) {
-  const res = await fetch('https://openapi.etsy.com/v2/shops/17719303/listings/active?api_key=mi7nway2o9qr8m58l5o5d6am');
-  const items = await res.json();
+async function createProductPages(params) {
+  const {createPage} = actions;
+  const result = await graphql(`
+  {
+      allSanityProducts {
+          nodes {
+              id
+              slug {
+                  current
+              }    
+          }
+        }
+  }
+  `);
 
-  items.results.map(async etsyItem => {
-    const res2 = await fetch(`https://openapi.etsy.com/v2/listings/${etsyItem.listing_id}/images?api_key=mi7nway2o9qr8m58l5o5d6am`);
-    const items = await res2.json();
-    // Taking the main image from the first item in the array
-    const image = await items.results[0].url_fullxfull;
+  if (result.errors) throw result.errors;
 
-    const nodeMeta = {
-      ...etsyItem,
-      id: createNodeId(`etsy-${etsyItem.listing_id}`),
-      parent: null,
-      // This is returning undefined
-      image: image,
-      children: [],
-      internal: {
-        type: `etsyItem`,
-        mediaType: 'application/json',
-        contentDigest: createContentDigest(etsyItem)
-      }
-    };
-    createNode({
-      ...etsyItem,
-      ...nodeMeta
-    });
+  const products = (result.data.allSanityPoptarts || {}).nodes || [];
+  products.forEach((node) => {
+      const {id, slug = {}} = node;
+      if (!slug) return;
+
+      const path = `/product/${slug.current}`;
+      createPage({
+          path,
+          component: require.resolve('./src/templates/product.js'),
+          context: {id}
+      })
   })
 }
 
@@ -140,6 +135,7 @@ export async function createPages(params) {
   await Promise.all([
     turnTartsIntoPages(params),
     turnFrostingsIntoPages(params),
+     createProductPages(params)
   ]);
 
 

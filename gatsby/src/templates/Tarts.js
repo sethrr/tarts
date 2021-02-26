@@ -8,9 +8,6 @@ import TartOrder from '../components/TartOrder';
 import calculateTartPrice from '../utils/calculateTartPrice';
 import formatMoney from '../utils/formatMoney';
 
-
-
-
 const TartGrid = styled.div`
 display: grid;
 grid-gap: 2rem;

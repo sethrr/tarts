@@ -3,7 +3,6 @@ import OrderContext from '../components/OrderContext';
 import calculateOrderTotal from './calculateOrderTotal';
 import formatMoney from './formatMoney';
 import attachNamesAndPrices from './attachNamesAndPrices';
-import CartItemAdded from '../components/CartItemAdded';
 
 export default function usePizza({ tarts, values }) {
   // 1. Create some state to hold our order
