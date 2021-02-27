@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Footer from './Footer';
 import Nav from './Nav';
 import GlobalAlert from './GlobalAlert';
+import Cart from './cart/cart';
 import 'normalize.css';
 import GlobalStyles from '../styles/GlobalStyles';
 import Typography from '../styles/Typography';
@@ -38,6 +39,7 @@ export default function Layout({ children }) {
         <ContentStyles>
           <Nav />
           <GlobalAlert />
+          <Cart />
           {children}
           <Footer />
         </ContentStyles>

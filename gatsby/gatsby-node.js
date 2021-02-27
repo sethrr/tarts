@@ -58,6 +58,47 @@ async function turnTartsIntoPages({
   });
 }
 
+
+async function turnProductsIntoPages({
+  graphql,
+  actions
+}) {
+  // 1. Get a template for this page
+  const productTemplate = path.resolve('./src/templates/product.js');
+  // 2. Query all pizzas
+  const result = await graphql(`
+  {
+      allSanityProduct {
+          nodes {
+              id
+              slug {
+                  current
+              }    
+          }
+        }
+  }
+  `);
+
+  if (result.errors) throw result.errors;
+
+  const products = (result.data.allSanityProduct || {}).nodes || [];
+  products.forEach((node) => {
+      const {id, slug = {}} = node;
+      if (!slug) return;
+
+      const path = `/product/${slug.current}`;
+      actions.createPage({
+          path,
+          component: require.resolve('./src/templates/product.js'),
+          context: {id}
+      })
+  })
+}
+
+
+
+
+
 async function turnFrostingsIntoPages({
   graphql,
   actions
@@ -90,52 +131,12 @@ async function turnFrostingsIntoPages({
   });
 }
 
-async function createProductPages(params) {
-  const {createPage} = actions;
-  const result = await graphql(`
-  {
-      allSanityProducts {
-          nodes {
-              id
-              slug {
-                  current
-              }    
-          }
-        }
-  }
-  `);
-
-  if (result.errors) throw result.errors;
-
-  const products = (result.data.allSanityPoptarts || {}).nodes || [];
-  products.forEach((node) => {
-      const {id, slug = {}} = node;
-      if (!slug) return;
-
-      const path = `/product/${slug.current}`;
-      createPage({
-          path,
-          component: require.resolve('./src/templates/product.js'),
-          context: {id}
-      })
-  })
-}
-
-
-
-
-export async function sourceNodes(params) {
-  await Promise.all([
-    fetchApiAndTurnIntoNodes(params),
-
-  ]);
-}
 
 export async function createPages(params) {
   await Promise.all([
     turnTartsIntoPages(params),
     turnFrostingsIntoPages(params),
-     createProductPages(params)
+    turnProductsIntoPages(params)
   ]);
 
 
