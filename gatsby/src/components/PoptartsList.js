@@ -4,18 +4,18 @@ import Img from 'gatsby-image'
 import styled from 'styled-components';
 
 function SingleTart({ tart }) {
-  
+  console.log(tart.frosting);
   return (
     <TartStyles>
-      <Link to={`/poptart/${tart.slug.current}`}>
+      <Link to={`/product/${tart.slug.current}`}>
         <h2>
-          <span className="mark">{tart.name}</span>
+          <span className="mark">{tart.title}</span>
         </h2>
       </Link>
 
-      <Link to={`/poptart/${tart.slug.current}`}>
-        <p> {tart.frosting.map((frosting) => frosting.name).join(', ')}</p>
-        <Img fluid={tart.image.asset.fluid} alt={tart.name} />
+      <Link to={`/product/${tart.slug.current}`}>
+        <p> {tart.frosting.map((frosting) => frosting.name).join(', ')} </p>
+        <Img fluid={tart.image.asset.fluid} alt={tart.title} />
       </Link>
     </TartStyles>
   );
@@ -48,6 +48,7 @@ overflow: hidden;
 }
 .gatsby-image-wrapper  {
    height: 100%;
+   max-height: 500px;
   }
 h2, p, a {
       margin: 0;

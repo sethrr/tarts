@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { graphql } from 'gatsby';
 import Img from 'gatsby-image';
 import SEO from '../components/SEO';
@@ -8,9 +8,7 @@ import formatMoney from '../utils/formatMoney';
 import OrderStyles from '../styles/OrderStyles';
 import MenuItemStyles from '../styles/MenuItemStyles';
 import useTart from '../utils/useTart';
-import TartOrder from '../components/TartOrder';
-import calculateOrderTotal from '../utils/calculateOrderTotal';
-import styled from 'styled-components';
+
 
 export default function OrderPage({ data }) {
   const tarts = data.tarts.nodes;
@@ -20,10 +18,8 @@ export default function OrderPage({ data }) {
     mapleSyrup: '',
   });
   const {
-    order,
     addToOrder,
-    removeFromOrder,
-    error,
+ 
     loading,
     message,
     submitOrder,
@@ -32,21 +28,7 @@ export default function OrderPage({ data }) {
     values,
   });
 
-const TartStyles = styled.div` 
-display: grid;
 
-@supports not (grid-template-rows: subgrid) {
---rows: auto auto 1fr;
-}
-
-grid-template-rows: var(--row, subgrid);
-grid-row: span 3;
-grid-gap: 1rem;
-
-h2, p {
-      margin: 0;
-    }
-`;
 
   if (message) {
     return <p>{message}</p>;

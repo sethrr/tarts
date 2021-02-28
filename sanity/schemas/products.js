@@ -54,11 +54,29 @@ export default {
       title: 'Description',
       type: 'string',
     },
+    {
+      name: 'frosting',
+      title: 'Frosting',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'frosting' }] }],
+    },
   ],
   preview: {
     select: {
       title: 'title',
-      media: 'images',
+      media: 'image',
+      frosting0: 'frosting.0.name',
+      frosting1: 'frosting.1.name',
+      frosting2: 'frosting.2.name',
+    },
+    prepare: ({ title, media, ...frosting }) => {
+      const frosts = Object.values(frosting).filter(Boolean);
+
+      return {
+        title,
+        media,
+        subtitle: frosts.join(', '),
+      };
     },
   },
 };

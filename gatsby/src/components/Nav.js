@@ -1,10 +1,11 @@
-import React, { useContext} from 'react';
+import React, { useContext, useEffect} from 'react';
 import { Link } from 'gatsby';
 import styled from 'styled-components';
 import Logo from './Logo';
-import OrderContext from '../components/OrderContext';
+import { useShoppingCart } from "use-shopping-cart";
+import { DispatchContext, StateContext } from "../components/context";
 
-
+// const cartCount = useShoppingCart();
 
 
 
@@ -67,12 +68,12 @@ const NavStyles = styled.nav`
 `;
 
 export default function Nav() {
-  const getCount = useContext(OrderContext)[0].length;
-  // if (getCount == 0) {
-  //   getCount = null;
-  // }
-
-
+  const dispatch = useContext(DispatchContext);
+  const state = useContext(StateContext);
+  useEffect(() => { 
+    console.log({dispatch, state})
+  })
+  
   return (
     <NavStyles>
       <ul>
@@ -91,7 +92,7 @@ export default function Nav() {
             <Link to="/poptarts/">Order Now</Link>
         </li>
         <li>
-          <Link to="/cart" data-cartcount={getCount !=0 ? getCount : null}>Cart</Link>
+          {/* <Link to="/cart" data-cartcount={cartCount !=-0 ? cartCount : null} >Cart</Link> */}
         </li>
       </ul>
     </NavStyles>

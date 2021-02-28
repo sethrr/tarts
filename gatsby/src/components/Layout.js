@@ -39,7 +39,6 @@ export default function Layout({ children }) {
         <ContentStyles>
           <Nav />
           <GlobalAlert />
-          <Cart />
           {children}
           <Footer />
         </ContentStyles>

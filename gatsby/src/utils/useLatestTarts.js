@@ -7,7 +7,6 @@ export default function useLatestData() {
   // slicemasters
   // Use a side effect to fetcht he data from the graphql endpoint
   useEffect(function () {
-    console.log('fetching!');
     // when the component loads, fetch the data
     fetch(process.env.GATSBY_GRAPHQL_ENDPOINT, {
       method: 'POST',

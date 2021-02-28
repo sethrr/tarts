@@ -1,8 +1,6 @@
-import { Link } from 'gatsby';
 import React from 'react';
 import Img from 'gatsby-image'
 import styled from 'styled-components';
-import calculateTartPrice from '../utils/calculateTartPrice';
 import formatMoney from '../utils/formatMoney';
 function SingleTart({ tart }) {
   
@@ -58,7 +56,6 @@ p {
 
 
 export default function PoptartsList({ tarts }) {
-    console.log(tarts)
   return (
     <TartGridStyles>
       {tarts.map((tart) => (

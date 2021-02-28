@@ -69,7 +69,7 @@ export default function ToppingsFilters({ activeFrosting }) {
 					glutenfree
 				}
 			}
-			tarts: allSanityPoptarts {
+			tarts: allSanityProduct {
 				nodes {
 					frosting {
 						name

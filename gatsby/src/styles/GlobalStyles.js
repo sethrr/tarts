@@ -87,6 +87,12 @@ const GlobalStyles = createGlobalStyle`
     display: inline-block;
   }
 
+  button[disabled] {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.3;
+  }
+
 `;
 
 export default GlobalStyles;

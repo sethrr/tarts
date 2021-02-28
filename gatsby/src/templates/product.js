@@ -1,10 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { graphql } from "gatsby";
 import Image from "gatsby-image";
 import { DispatchContext } from "../components/context";
 import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
 import styled from 'styled-components';
-import Img from 'gatsby-image';
 
 const TartGrid = styled.div`
 display: grid;
@@ -52,9 +51,10 @@ const Product = ({ data }) => {
     sku,
   } = data.product;
 
-  const dispatch = useContext(DispatchContext);
 
   const { addItem } = useShoppingCart();
+  
+  console.log(addItem)
 
   const formattedPrice = formatCurrencyString({
     value: 3 * 100,
@@ -67,20 +67,21 @@ const Product = ({ data }) => {
       {
         name: title,
         id: productId.current,
-        price: 3 * 100,
+        price: price,
         currency,
         sku: sku,
         image: image,
       },
       1
     );
+
   };
 
   return (
     <>
      
     
-            <button onClick={addToCart}> add to cart</button>
+            
 
       <TartGrid>
       <Image fluid={image.asset.fluid} />
@@ -89,16 +90,17 @@ const Product = ({ data }) => {
           <h2 className="mark">{title}</h2>
       
            <p>{description}</p>
-           <h3> Add to Cart:</h3>
          <div className="order-btns">
-                {['Half Dozen', 'Dozen', 'Two Dozen'].map((size) => (
+                {/* {['Half Dozen', 'Dozen', 'Two Dozen'].map((size) => (
                   <button
-                    type="button"
-                    key={size}
-                   onClick={addToCart}>
-                    {formattedPrice} 
+                  type="button"
+                  key={size}
+                  onClick={addToCart}>
+                  {formattedPrice} 
                   </button>
-                ))}
+                ))} */}
+                <h3> Add to Cart:</h3>
+                <button onClick={addToCart}> add to cart</button>
               </div>
    
               </div>
@@ -124,9 +126,9 @@ query ProductTemplateQuery($id: String!) {
       currency
       sku
       description 
-      image{
+      image {
         asset {
-           fluid {
+          fluid(maxWidth: 400) {
             ...GatsbySanityImageFluid
           }
         }

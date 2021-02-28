@@ -4,7 +4,6 @@ import Img from 'gatsby-image';
 import styled from 'styled-components';
 import SEO from '../components/SEO';
 import useTart from '../utils/useTart';
-import TartOrder from '../components/TartOrder';
 import calculateTartPrice from '../utils/calculateTartPrice';
 import formatMoney from '../utils/formatMoney';
 

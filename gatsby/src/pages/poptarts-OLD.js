@@ -28,8 +28,8 @@ export default function PoptartsPage({ data, pageContext }) {
   );
 } 
 export const query = graphql`
-query allPoptarts ($frosting: [String], $skip: Int = 0, $pageSize: Int = 8) {
-  poptarts: allSanityProduct(filter: 
+query allTarts ($frosting: [String], $skip: Int = 0, $pageSize: Int = 8) {
+  poptarts: allSanityPoptarts(filter: 
     { frosting: 
       { elemMatch: 
         { name: 
@@ -41,7 +41,7 @@ query allPoptarts ($frosting: [String], $skip: Int = 0, $pageSize: Int = 8) {
      {
       totalCount
       nodes { 
-        title
+        name
         price
         id
         slug {

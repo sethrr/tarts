@@ -1,7 +1,9 @@
 import React, { useContext, useEffect } from "react";
-import { StateContext, DispatchContext } from "../context";
 import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
-import { globalHistory } from "@reach/router";
+import MenuItemStyles from '../../styles/MenuItemStyles';
+import Img from 'gatsby-image';
+import OrderStyles from "../../styles/OrderStyles";
+
 
 const Cart = () => {
   const {
@@ -10,25 +12,11 @@ const Cart = () => {
     removeItem,
     redirectToCheckout,
   } = useShoppingCart();
-  const dispatch = useContext(DispatchContext);
-  const state = useContext(StateContext);
+
 
   useEffect(() => {
     console.log({ cartCount });
   }, [cartCount]);
-
-  useEffect(() => {
-    // If the route has changed it means the user has clicked on a category and we want to wait half a second then close the pop out
-    return globalHistory.listen(({ action }) => {
-      if (action === "PUSH") {
-        const timer = setTimeout(() => {
-          dispatch({ type: "cartOpen", payload: false });
-        }, 500);
-
-        return () => clearTimeout(timer);
-      }
-    });
-  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -49,47 +37,60 @@ const Cart = () => {
   };
 
   return (
-  <>
-     
-     Your Cart
-       
-     
-       
-        <div>
+    <OrderStyles>
+        <fieldset><legend>Order</legend>
         {cartCount !== 0
           ? Object.keys(cartDetails).map((cartItem, index) => {
               const item = cartDetails[cartItem];
               return (
                 <React.Fragment key={index}>
+                  <MenuItemStyles>
               
-                  
-                    <img src={item?.image} />
-                  
-                        {item?.name}
-                     
-                      
+                  <Img
+                width="50"
+                height="50"
+                fluid={item?.image.asset.fluid}
+                alt={item?.name}
+              />
+              <div className="menu-item-info">
+                <h2>{item?.name}</h2>
+                      <p>
                         {formatCurrencyString({
                           value: item.price,
                           currency: item.currency,
                           language: "en-US",
                         })}
+                      </p>
+              </div>
+                      
                     
-                  
-                    <button onClick={() => removeItem(item.id)}>x</button>
+                 
+                      <button type="button" className="remove" title={`Remove ${item.title} from Order`} onClick={() => removeItem(item.id)}>&times;</button>
                 
-                  
+                  </MenuItemStyles>
                 </React.Fragment>
               );
             })
-          : null}
-          </div>
-      
-        <button variant="checkout" onClick={handleSubmit}>
+          : <p>Your cart is empty!</p>
+          
+        }
+        </fieldset>
+        <fieldset>
+          <legend>Total</legend>
+      {cartCount !== 0
+          ?
+        <button onClick={handleSubmit}>
           Checkout
         </button>
-      
+          :
 
-    </>
+          <button disabled>
+          Checkout
+        </button>
+      } 
+      </fieldset>
+      </OrderStyles>
+
   );
 };
 

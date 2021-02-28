@@ -38,7 +38,6 @@ h1 strong {
 `;
 
 function CurrentlyFeaturedImage ({ featuredImage }) { 
-  console.log(featuredImage);
   return (
       <HomeHeadline>
       <div className="hero">
@@ -56,7 +55,7 @@ function CurrentlyFeaturedImage ({ featuredImage }) {
                     />
                     )}
       </div>
-      <div class="hero-sidebar">
+      <div className="hero-sidebar">
       <h1> Homemade <strong> Poptarts</strong>.
        <br />
        But for <strong>Adults.</strong>
