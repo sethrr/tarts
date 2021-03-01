@@ -1,4 +1,4 @@
-const stripe = require('stripe')('sk_test_51IOPnECsU39bMzZTcbg2LaNr9EVjPLZBej9PPMLJnC083Frk3o78KHpWfjQSlMCLa4zF6ZwJWVmw2iQvNBg0cXSM002URcyPbX');
+const stripe = require('stripe')(process.env.GATSBY_STRIPE_API_SECRET);
 const validateCartItems = require('use-shopping-cart/src/serverUtil').validateCartItems;
 const sanityClient = require('@sanity/client');
 const client = sanityClient({
@@ -22,7 +22,8 @@ exports.handler = async (event) => {
             id: product.productId.current,
             sku: product.sku,
             price: product.price * 100,
-            currency: product.currency
+            currency: product.currency,
+            tax_rates: ['{{txr_1IQ0lmCsU39bMzZTe9YDT5Rp}}'],
         }));
         const line_items = validateCartItems(inventory, productJSON);
 
@@ -31,7 +32,7 @@ exports.handler = async (event) => {
            payment_method_types: ['card'],
            billing_address_collection: 'auto',
            shipping_address_collection: {
-               allowed_countries: ['US', 'CA', 'GB']
+               allowed_countries: ['US']
            },
            mode: 'payment',
             success_url: `http://localhost:8888/success`,

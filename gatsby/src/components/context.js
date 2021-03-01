@@ -9,6 +9,7 @@ const initialValues = {
   navOpen: false,
   cartOpen: false,
   selectedParentCategory: "",
+  cartCount: 0,
 };
 
 const reducer = (state, action) => {

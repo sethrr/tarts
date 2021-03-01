@@ -3,11 +3,6 @@ import { Link } from 'gatsby';
 import styled from 'styled-components';
 import Logo from './Logo';
 import { useShoppingCart } from "use-shopping-cart";
-import { DispatchContext, StateContext } from "../components/context";
-
-// const cartCount = useShoppingCart();
-
-
 
 const NavStyles = styled.nav`
   .logo {
@@ -68,12 +63,8 @@ const NavStyles = styled.nav`
 `;
 
 export default function Nav() {
-  const dispatch = useContext(DispatchContext);
-  const state = useContext(StateContext);
-  useEffect(() => { 
-    console.log({dispatch, state})
-  })
-  
+  const {cartCount} = useShoppingCart();
+
   return (
     <NavStyles>
       <ul>
@@ -92,7 +83,7 @@ export default function Nav() {
             <Link to="/poptarts/">Order Now</Link>
         </li>
         <li>
-          {/* <Link to="/cart" data-cartcount={cartCount !=-0 ? cartCount : null} >Cart</Link> */}
+          <Link to="/cart" data-cartcount={cartCount !=-0 ? cartCount : null} >Cart</Link> 
         </li>
       </ul>
     </NavStyles>

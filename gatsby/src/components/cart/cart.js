@@ -3,6 +3,8 @@ import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
 import MenuItemStyles from '../../styles/MenuItemStyles';
 import Img from 'gatsby-image';
 import OrderStyles from "../../styles/OrderStyles";
+import {StateContext, DispatchContext} from '../context'
+import { globalHistory } from "@reach/router";
 
 
 const Cart = () => {
@@ -11,12 +13,16 @@ const Cart = () => {
     cartCount,
     removeItem,
     redirectToCheckout,
+    formattedTotalPrice
   } = useShoppingCart();
-
+  
+  const dispatch = useContext(DispatchContext);
+  
+  dispatch({ type: "cartOpen", payload: false })
 
   useEffect(() => {
-    console.log({ cartCount });
   }, [cartCount]);
+  
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -42,6 +48,7 @@ const Cart = () => {
         {cartCount !== 0
           ? Object.keys(cartDetails).map((cartItem, index) => {
               const item = cartDetails[cartItem];
+              console.log(item);
               return (
                 <React.Fragment key={index}>
                   <MenuItemStyles>
@@ -54,6 +61,7 @@ const Cart = () => {
               />
               <div className="menu-item-info">
                 <h2>{item?.name}</h2>
+                    quantity: {item.quantity}
                       <p>
                         {formatCurrencyString({
                           value: item.price,
@@ -62,9 +70,6 @@ const Cart = () => {
                         })}
                       </p>
               </div>
-                      
-                    
-                 
                       <button type="button" className="remove" title={`Remove ${item.title} from Order`} onClick={() => removeItem(item.id)}>&times;</button>
                 
                   </MenuItemStyles>
@@ -77,6 +82,9 @@ const Cart = () => {
         </fieldset>
         <fieldset>
           <legend>Total</legend>
+
+      <p>Subtotal: {formattedTotalPrice}</p>
+      <p>Total: {formattedTotalPrice}</p>
       {cartCount !== 0
           ?
         <button onClick={handleSubmit}>

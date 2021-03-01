@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import Footer from './Footer';
 import Nav from './Nav';
 import GlobalAlert from './GlobalAlert';
-import Cart from './cart/cart';
 import 'normalize.css';
 import GlobalStyles from '../styles/GlobalStyles';
 import Typography from '../styles/Typography';
 import stripes from '../assets/images/stripes.svg';
+import CartAlert from './cart/CartAlert';
 
 const SiteBorderStyles = styled.div`
   max-width: 90%;
@@ -40,6 +40,7 @@ export default function Layout({ children }) {
           <Nav />
           <GlobalAlert />
           {children}
+          <CartAlert />
           <Footer />
         </ContentStyles>
       </SiteBorderStyles>

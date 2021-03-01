@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { graphql } from "gatsby";
 import Image from "gatsby-image";
-import { DispatchContext } from "../components/context";
+import { StateContext, DispatchContext } from "../components/context";
 import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
 import styled from 'styled-components';
 
@@ -51,8 +51,10 @@ const Product = ({ data }) => {
     sku,
   } = data.product;
 
+  const state = useContext(StateContext);
+  const dispatch = useContext(DispatchContext);
 
-  const { addItem } = useShoppingCart();
+  const { addItem, cartCount, incrementItem } = useShoppingCart();
   
   console.log(addItem)
 
@@ -74,15 +76,16 @@ const Product = ({ data }) => {
       },
       1
     );
-
+    incrementItem(
+      sku, 1
+    )
+      state.cartCount = cartCount;
+      dispatch({ type: "cartOpen", payload: true });
   };
 
   return (
     <>
      
-    
-            
-
       <TartGrid>
       <Image fluid={image.asset.fluid} />
       <div>
