@@ -1,7 +1,7 @@
 import React from 'react';
 import useLatestData from '../utils/useLatestData';
 import { HomePageGrid } from '../styles/Grids';
-import LoadingGrid from '../components/LoadingGrid';
+import {FeaturedTartsLoader, FeaturedImageLoader} from '../components/LoadingGrid';
 import ItemGrid from '../components/ItemGrid';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
@@ -42,13 +42,13 @@ function CurrentlyFeaturedImage ({ featuredImage }) {
       <HomeHeadline>
       <div className="hero">
 
-      
+      {!featuredImage && <FeaturedImageLoader count={1} />}
                     {featuredImage && (
                        <img src={`${featuredImage.asset.url}`} 
-                    alt="hero"
-                    height="100%"
-                    width="100%"
-                    style={{
+                        alt="hero"
+                        height="100%"
+                        width="100%"
+                        style={{
                         background: `url(${featuredImage.asset.metadata.lqip})`,
                         backgroundSize: "cover"
                     }}
@@ -74,7 +74,7 @@ function CurrentlyFeatured( { featuredTarts }) {
 
       <h2>
         <span className="mark tilt">Featured Tarts</span></h2>
-      {!featuredTarts && <LoadingGrid count={4} />}
+      {!featuredTarts && <FeaturedTartsLoader count={4} />}
       {featuredTarts && !featuredTarts?.length && (
         <p>No one is working right now!</p>
       )}

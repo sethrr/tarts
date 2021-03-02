@@ -10,7 +10,7 @@ import stripes from '../assets/images/stripes.svg';
 import CartAlert from './cart/CartAlert';
 
 const SiteBorderStyles = styled.div`
-  max-width: 90%;
+  max-width: 80%;
   margin: 12rem auto 4rem auto;
   margin-top: clamp(2rem, 10vw, 12rem);
   background: white url(${stripes});

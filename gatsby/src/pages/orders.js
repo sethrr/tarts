@@ -96,23 +96,8 @@ export default function OrderPage({ data }) {
             </MenuItemStyles>
           ))}
         </fieldset>
-        {/* <fieldset disabled={loading} className="order">
-          <legend>Order</legend>
-          <TartOrder
-            order={order}
-            removeFromOrder={removeFromOrder}
-            tarts={tarts}
-          />
-        </fieldset>
-        <fieldset disabled={loading}>
-          <h3>
-            Your Total is {formatMoney(calculateOrderTotal(order, tarts))}
-          1</h3>
-          <div>{error ? <p>Error: {error}</p> : ''}</div>
-          <button type="submit" disabled={loading}>
-            {loading ? 'Placing Order...' : 'Order Ahead'}
-          </button>
-        </fieldset> */}
+
+    
       </OrderStyles>
     </>
   );

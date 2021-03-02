@@ -23,10 +23,18 @@ exports.handler = async (event) => {
             sku: product.sku,
             price: product.price * 100,
             currency: product.currency,
-            tax_rates: ['{{txr_1IQ0lmCsU39bMzZTe9YDT5Rp}}'],
+           
         }));
         const line_items = validateCartItems(inventory, productJSON);
 
+        // 
+
+        line_items.forEach((item => {
+            item.tax_rates=['txr_1IQ0lmCsU39bMzZTe9YDT5Rp']
+        }))
+     
+
+        console.log(line_items);
 
        const session = await stripe.checkout.sessions.create({
            payment_method_types: ['card'],
@@ -34,14 +42,13 @@ exports.handler = async (event) => {
            shipping_address_collection: {
                allowed_countries: ['US']
            },
+           shipping_rates: ['shr_1IQG4UCsU39bMzZTfj4q5vZz'],
            mode: 'payment',
             success_url: `http://localhost:8888/success`,
             cancel_url: `http://localhost:8888/cancelled`,
            line_items,
        });
-
-       console.log({session})
-
+       console
        return {
            statusCode: 200,
            body: JSON.stringify({sessionId: session.id})

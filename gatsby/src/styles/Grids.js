@@ -60,4 +60,16 @@ export const ItemStyles = styled.div`
     background-size: 500px;
     animation: shine 1s infinite linear;
   }
+  img.loading2 {
+    --shine: white;
+    --background: var(--grey);
+    background-image: linear-gradient(
+      90deg,
+      var(--background) 0px,
+      var(--shine) 40px,
+      var(--background) 80px
+    );
+    background-size: 860px;
+    animation: shine 1s infinite linear;
+  }
 `;
