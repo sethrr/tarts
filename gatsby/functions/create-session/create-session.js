@@ -21,7 +21,7 @@ exports.handler = async (event) => {
             name: product.title,
             id: product.productId.current,
             sku: product.sku,
-            price: product.price * 100,
+            price: product.price,
             currency: product.currency,
            
         }));

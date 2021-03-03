@@ -45,7 +45,6 @@ const Product = ({ data }) => {
     title,
     productId,
     price,
-    currency,
     description,
     image,
     sku,
@@ -60,7 +59,7 @@ const Product = ({ data }) => {
 
   const formattedPrice = formatCurrencyString({
     value: 3 * 100,
-    currency: currency,
+    currency: "USD",
     language: "en-US",
   });
 
@@ -70,7 +69,7 @@ const Product = ({ data }) => {
         name: title,
         id: productId.current,
         price: price,
-        currency,
+        currency: "USD",
         sku: sku,
         image: image,
       },

@@ -48,19 +48,12 @@ right: 0;
 
 
 export default function CartAlert() {
+  const { cartCount } = useShoppingCart();
     const dispatch = useContext(DispatchContext);
-    const state = useContext(StateContext);
-    const { cartCount } = useShoppingCart();
-    const showClass = state.cartOpen ? 'show' : 'hide';
-
-    useEffect(() => {
-    }, [cartCount]);
-
-    useEffect(() => {
-    }, []);
+ 
 
     return (
-        <CartAlertStyles className={showClass}> 
+        <CartAlertStyles> 
             <p>You have {cartCount} items in your cart. </p>
             <button> Go To Checkout </button>
            <button type="button" className="remove" title="Close Window" onClick={() => dispatch({ type: "cartOpen", payload: false })}>&times;</button>

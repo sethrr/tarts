@@ -48,7 +48,7 @@ const Cart = () => {
         {cartCount !== 0
           ? Object.keys(cartDetails).map((cartItem, index) => {
               const item = cartDetails[cartItem];
-              console.log(item);
+
               return (
                 <React.Fragment key={index}>
                   <MenuItemStyles>
@@ -64,7 +64,7 @@ const Cart = () => {
                       <p>
                         {formatCurrencyString({
                           value: item.price,
-                          currency: item.currency,
+                          currency: 'USD',
                           language: "en-US",
                         })}
                       </p>
