@@ -14,6 +14,7 @@ export const ItemsGrid = styled.div`
   display: grid;
   gap: 2rem;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 0 2rem;
 `;
 
 // Single Grid Item (for home page)

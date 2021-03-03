@@ -2,9 +2,7 @@ import React, { useContext, useEffect } from "react";
 import styled from 'styled-components';
 import { useShoppingCart } from "use-shopping-cart";
 import { StateContext, DispatchContext } from "../../components/context";
-
-
-
+import Cart from '../../components/cart/cart'
 
 const CartAlertStyles = styled.div`
 position: fixed;
@@ -46,19 +44,26 @@ right: 0;
   0% { bottom: -200px; }
   100% { bottom: 0; }
 }
-
-
 `
+
+
 export default function CartAlert() {
     const dispatch = useContext(DispatchContext);
     const state = useContext(StateContext);
-    const {cartCount} = useShoppingCart();
+    const { cartCount } = useShoppingCart();
+    const showClass = state.cartOpen ? 'show' : 'hide';
+
+    useEffect(() => {
+    }, [cartCount]);
+
+    useEffect(() => {
+    }, []);
+
     return (
-        <CartAlertStyles className={state.cartOpen ? 'show' : 'hide' } data-cart-alert> 
-           <p>Whattt</p>  
+        <CartAlertStyles className={showClass}> 
+            <p>You have {cartCount} items in your cart. </p>
+            <button> Go To Checkout </button>
            <button type="button" className="remove" title="Close Window" onClick={() => dispatch({ type: "cartOpen", payload: false })}>&times;</button>
         </CartAlertStyles>
-        
- 
     )
 }

@@ -6,7 +6,7 @@ export default function ItemGrid({items}) {
     return (
         <ItemsGrid>
             {items.map((item) => (
-                <ItemStyles>
+                <ItemStyles key={item.slug.current}>
                     <Link to={`/poptart/${item.slug.current}`}>
                     <img src={`${item.image.asset.url}?w=600&h=400&fit=crop`} 
                     alt={item.name}

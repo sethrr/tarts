@@ -52,7 +52,6 @@ const Cart = () => {
               return (
                 <React.Fragment key={index}>
                   <MenuItemStyles>
-              
                   <Img
                 width="50"
                 height="50"
@@ -80,9 +79,14 @@ const Cart = () => {
           
         }
         </fieldset>
+      <div>
         <fieldset>
-          <legend>Total</legend>
-
+      
+      <legend>Shipping</legend>
+      <p>"the next business day after an order has shipped." Business days are defined as "Monday-Friday" and not including holidays and weekends. Additionally, examples are provided, letting a customer know that with next day delivery, "an order that ships out on Thursday...would be delivered on Friday" and that "an order shipping out on Friday...would arrive on Monday."</p>
+        </fieldset>
+        <fieldset>
+      <legend>Total</legend>
       <p>Subtotal: {formattedTotalPrice}</p>
       <p>Total: {formattedTotalPrice}</p>
       {cartCount !== 0
@@ -97,6 +101,7 @@ const Cart = () => {
         </button>
       } 
       </fieldset>
+      </div>
       </OrderStyles>
 
   );

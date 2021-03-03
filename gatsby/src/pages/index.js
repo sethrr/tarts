@@ -5,13 +5,29 @@ import {FeaturedTartsLoader, FeaturedImageLoader} from '../components/LoadingGri
 import ItemGrid from '../components/ItemGrid';
 import styled from 'styled-components';
 import { Link } from 'gatsby';
+import Image from "gatsby-image";
+
+const FeaturedTartsSection = styled.div`
+background: var(--red);
+padding: 10rem 0;
+margin-left: -2rem;
+margin-right: -2rem;
+
+.mark, .btn {
+  background: var(--yellow);
+  color: var(--black);
+}
+
+
+
+`;
 
 const HomeHeadline = styled.div`
 margin: 0 auto;
 padding: 5rem 0;
 display: grid;
 grid-gap: 5rem;
-grid-template-columns: 1.5fr 1fr;
+grid-template-columns: 1fr 1fr;
 width: 100%;
 
 h1 strong {
@@ -28,32 +44,45 @@ h1 strong {
     }
 }
 .hero {
-  img {
-    max-width: 100%;
-    height: 100%;
-    max-height: 50rem;
-    object-fit: cover;
-  }
+  /* display: flex; */
+  flex-direction: center;
+  align-items: center;
+  
 }
 `;
 
-function CurrentlyFeaturedImage ({ featuredImage }) { 
+
+function CurrentlyFeatured( { featuredTarts }) {
   return (
+    <FeaturedTartsSection>
+
+      <h2>
+      <span className="mark tilt">Featured Tarts</span></h2>
+      {!featuredTarts && <FeaturedTartsLoader count={4} />}
+      {featuredTarts && !featuredTarts?.length && (
+        <p>No one is working right now!</p>
+      )}
+      {featuredTarts?.length && <ItemGrid items={featuredTarts}/>}
+    
+    </FeaturedTartsSection>
+  );
+}
+
+export default function HomePage({ data }) {
+  const { featuredTarts } = useLatestData();
+  const { featuredImage } = useLatestData();
+  
+  const homeData = data.sanityStoreSettings;
+
+  return (
+    <div className="center">
+      <HomePageGrid>
+
       <HomeHeadline>
       <div className="hero">
-
-      {!featuredImage && <FeaturedImageLoader count={1} />}
-                    {featuredImage && (
-                       <img src={`${featuredImage.asset.url}`} 
-                        alt="hero"
-                        height="100%"
-                        width="100%"
-                        style={{
-                        background: `url(${featuredImage.asset.metadata.lqip})`,
-                        backgroundSize: "cover"
-                    }}
-                    />
-                    )}
+      <div class="image-container">
+      <Image fluid={homeData.featuredImage.asset.fluid} height={500} width={500}/>
+      </div>
       </div>
       <div className="hero-sidebar">
       <h1> Homemade <strong> Poptarts</strong>.
@@ -64,36 +93,22 @@ function CurrentlyFeaturedImage ({ featuredImage }) {
        
        </div>
     </HomeHeadline>
-
-  )
-}
-function CurrentlyFeatured( { featuredTarts }) {
-
-  return (
-    <div>
-
-      <h2>
-        <span className="mark tilt">Featured Tarts</span></h2>
-      {!featuredTarts && <FeaturedTartsLoader count={4} />}
-      {featuredTarts && !featuredTarts?.length && (
-        <p>No one is working right now!</p>
-      )}
-      {featuredTarts?.length && <ItemGrid items={featuredTarts}/>}
-    
-    </div>
-  );
-}
-
-export default function HomePage() {
-  const { featuredTarts } = useLatestData();
-  const { featuredImage } = useLatestData();
-  
-  return (
-    <div className="center">
-      <HomePageGrid>
-        <CurrentlyFeaturedImage featuredImage={ featuredImage } />
         <CurrentlyFeatured featuredTarts={ featuredTarts } />
       </HomePageGrid>
     </div>
   );
 }
+export const query = graphql`
+query {
+  sanityStoreSettings {
+    featuredImage {
+      asset {
+        fluid(maxWidth: 500) {
+          ...GatsbySanityImageFluid
+        }
+      }
+    }
+  }
+}
+  
+`;

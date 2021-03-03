@@ -17,7 +17,12 @@ const MenuItemStyles = styled.div`
   .menu-item-info {
     display: flex;
     flex-direction: column;
+    align-self: flex-start;
   }
+  .gatsby-image-wrapper {
+max-height: 150px;
+align-self: flex-start;
+}
   p {
     margin: 0;
   }
