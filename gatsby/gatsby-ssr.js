@@ -33,7 +33,6 @@ export function wrapPageElement({ element, props }) {
 export function wrapRootElement({ element }) {
   return ( 
   <>
-  <OrderProvider>{element}</OrderProvider> 
   <WithMetaData element={element} />
   </>
   )

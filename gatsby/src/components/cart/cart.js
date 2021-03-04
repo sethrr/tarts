@@ -4,8 +4,8 @@ import MenuItemStyles from '../../styles/MenuItemStyles';
 import Img from 'gatsby-image';
 import OrderStyles from "../../styles/OrderStyles";
 import {StateContext, DispatchContext} from '../context'
+import formatMoney  from "../../utils/formatMoney"
 import { globalHistory } from "@reach/router";
-
 
 const Cart = () => {
   const {
@@ -13,15 +13,27 @@ const Cart = () => {
     cartCount,
     removeItem,
     redirectToCheckout,
-    formattedTotalPrice
+    totalPrice
   } = useShoppingCart();
-  
   const dispatch = useContext(DispatchContext);
-  
-  dispatch({ type: "cartOpen", payload: false })
+  const state = useContext(StateContext);
 
   useEffect(() => {
+    console.log({ cartCount });
   }, [cartCount]);
+
+  useEffect(() => {
+    // If the route has changed it means the user has clicked on a category and we want to wait half a second then close the pop out
+    return globalHistory.listen(({ action }) => {
+      if (action === "PUSH") {
+        const timer = setTimeout(() => {
+          dispatch({ type: "cartOpen", payload: false });
+        }, 500);
+
+        return () => clearTimeout(timer);
+      }
+    });
+  }, [state.cartOpen, dispatch]);
   
 
   const handleSubmit = async (event) => {
@@ -60,15 +72,9 @@ const Cart = () => {
               />
               <div className="menu-item-info">
                 <h2>{item?.name}</h2>
-                    quantity: {item.quantity}
-                      <p>
-                        {formatCurrencyString({
-                          value: item.price,
-                          currency: 'USD',
-                          language: "en-US",
-                        })}
-                      </p>
-              </div>
+                    <p>quantity: {item.quantity}</p>
+                       <p> price: {formatMoney(item.price)} </p>
+                   </div>
                       <button type="button" className="remove" title={`Remove ${item.title} from Order`} onClick={() => removeItem(item.id)}>&times;</button>
                 
                   </MenuItemStyles>
@@ -87,8 +93,7 @@ const Cart = () => {
         </fieldset>
         <fieldset>
       <legend>Total</legend>
-      <p>Subtotal: {formattedTotalPrice}</p>
-      <p>Total: {formattedTotalPrice}</p>
+      {formatMoney(totalPrice)}
       {cartCount !== 0
           ?
         <button onClick={handleSubmit}>
