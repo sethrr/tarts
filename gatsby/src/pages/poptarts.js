@@ -3,7 +3,7 @@ import React from 'react';
 import PoptartsList from '../components/PoptartsList';
 import ToppingsFilters from '../components/FrostingFilter';
 import SEO from '../components/SEO';
-import { HeadingStyles } from '../styles/HeadingStyles';
+
 
 export default function PoptartsPage({ data, pageContext }) {
   const tarts = data.poptarts.nodes;
@@ -12,9 +12,9 @@ export default function PoptartsPage({ data, pageContext }) {
     <div>
     <SEO title={pageContext.frosting ? `Poptarts with ${pageContext.frosting}` : `All Poptarts` } />
     <h1>Our Menu</h1>
-      <HeadingStyles>
+      <div>
         <h2 className="h3-style no-margins"> Filter By Frosting:</h2>
-        </HeadingStyles>
+        </div>
       <ToppingsFilters activeFrosting={pageContext.frosting}/> 
       <PoptartsList tarts={tarts} />
        {/* <Pagination

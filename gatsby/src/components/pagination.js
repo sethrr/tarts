@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import styled from 'styled-components';
+
 
 const PaginationStyles = styled.div`
   display: flex;
@@ -41,7 +41,7 @@ export default function Pagination({
   const hasNextPage = nextPage <= totalPages;
   const hasPrevPage = prevPage >= 1;
   return (
-    <PaginationStyles>
+    <div>
       <Link disabled={!hasPrevPage} to={`${base}/${prevPage}`}>
         ← Prev
       </Link>
@@ -57,6 +57,6 @@ export default function Pagination({
       <Link disabled={!hasNextPage} to={`${base}/${nextPage}`}>
         Next →
       </Link>
-    </PaginationStyles>
+    </div>
   );
 }

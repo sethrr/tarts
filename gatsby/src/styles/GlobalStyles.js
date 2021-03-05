@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import bg from '../assets/images/bg.svg';
 import sprinks from '../assets/images/sprinkles.svg';
 import stripes from '../assets/images/stripes.svg';
 
@@ -16,21 +15,7 @@ const GlobalStyles = createGlobalStyle`
     --secondary: #e2a99c; 
 
   }
-  html {
-    background-image: url(${sprinks});
-    background-size: 450px;
-    background-attachment: fixed;
-    font-size: 10px;
-  }
 
-  body {
-    font-size: 2rem;
-  }
-
-  fieldset {
-    border-color: rgba(0,0,0,0.1);
-    border-width: 1px;
-  }
 
   button {
     background: var(--red);
@@ -81,11 +66,6 @@ const GlobalStyles = createGlobalStyle`
     max-width: 100%;
   }
 
-  .tilt {
-    transform: rotate(-2deg);
-    position: relative;
-    display: inline-block;
-  }
 
   button[disabled] {
     pointer-events: none;

@@ -1,5 +1,4 @@
 import React from 'react';
-import MenuItemStyles from '../styles/MenuItemStyles';
 import Img from 'gatsby-image';
 import calculateTartPrice from '../utils/calculateTartPrice';
 import formatMoney from '../utils/formatMoney';
@@ -10,7 +9,7 @@ export default function TartOrder({ order, tarts, removeFromOrder}) {
     <> 
     {order.map((singleOrder, index) => {
         const tart = tarts.find(tart => tart.id === singleOrder.id);
-        return <MenuItemStyles key={`${singleOrder.id}-${index}`}>
+        return <div key={`${singleOrder.id}-${index}`}>
         <Img fluid={`${tart.image.asset.fluid}?w=200&h=200&fit=crop`}></Img>
         <div className="menu-item-info">
         <h2> {tart.name}</h2>
@@ -19,7 +18,7 @@ export default function TartOrder({ order, tarts, removeFromOrder}) {
         </div>
         <button type="button" className="remove" title={`Remove ${singleOrder.size} ${tart.name} from Order`} onClick={() => removeFromOrder(index)}>&times;</button>
        
-        </MenuItemStyles>
+        </div>
     }
     )}
 

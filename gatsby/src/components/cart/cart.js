@@ -1,8 +1,6 @@
 import React, { useContext, useEffect } from "react";
-import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
-import MenuItemStyles from '../../styles/MenuItemStyles';
+import { useShoppingCart } from "use-shopping-cart";
 import Img from 'gatsby-image';
-import OrderStyles from "../../styles/OrderStyles";
 import {StateContext, DispatchContext} from '../context'
 import formatMoney  from "../../utils/formatMoney"
 import { globalHistory } from "@reach/router";
@@ -55,7 +53,7 @@ const Cart = () => {
   };
 
   return (
-    <OrderStyles>
+    <div>
         <fieldset><legend>Order</legend>
         {cartCount !== 0
           ? Object.keys(cartDetails).map((cartItem, index) => {
@@ -63,7 +61,7 @@ const Cart = () => {
 
               return (
                 <React.Fragment key={index}>
-                  <MenuItemStyles>
+                  <div>
                   <Img
                 width="50"
                 height="50"
@@ -77,7 +75,7 @@ const Cart = () => {
                    </div>
                       <button type="button" className="remove" title={`Remove ${item.title} from Order`} onClick={() => removeItem(item.id)}>&times;</button>
                 
-                  </MenuItemStyles>
+                  </div>
                 </React.Fragment>
               );
             })
@@ -107,7 +105,7 @@ const Cart = () => {
       } 
       </fieldset>
       </div>
-      </OrderStyles>
+      </div>
 
   );
 };

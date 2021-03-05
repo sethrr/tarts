@@ -1,47 +1,8 @@
 import { graphql } from "gatsby";
 import React from "react";
-import styled from 'styled-components';
 import Image from "gatsby-image";
 import useForm from '../utils/useForm';
 import useTart from '../utils/useTart';
-
-const AboutStyles = styled.div`
- display: grid;
-  gap: 5rem;
-  --columns: 2;
-  grid-template-columns: 1fr .33fr;
-  @media (max-width: 800px) {
-    grid-template-columns: 1fr;
-  }
-
-  .baker-bio {
-      margin: 1rem 0;
-  }
-  fieldset {
-    grid-column: span 1;
-    max-height: 600px;
-    overflow: auto;
-    display: grid;
-    gap: 1rem;
-    align-content: start;
-    &.order,
-    &.menu {
-      grid-column: span 1;
-      /* Chrome is weird about Grid and fieldsets, so we add a fixed height to fix it :)  */
-      height: 900px;
-    }
-  }
-  button {
-    display: inline-block;
-  }
-  .mapleSyrup {
-    display: none;
-  }
-
-  .contact-container {
-      margin-top: 4rem;
-  }
-`;
 
 
 export default function AboutPage({ data }) {
@@ -62,7 +23,7 @@ export default function AboutPage({ data }) {
    <div>
    <h1> About </h1>
    </div>
-   <AboutStyles onSubmit={submitOrder}>
+   <div onSubmit={submitOrder}>
    <div className="main">
    <div className="about-container">
    <h2 className="h3-style">The Toasted Tart</h2>
@@ -122,7 +83,7 @@ export default function AboutPage({ data }) {
    <h3 className="baker-bio"> Baker Bio</h3>
    <p>{about.biography}</p>
     </div>
-    </AboutStyles>
+    </div>
     </>
   );
 }

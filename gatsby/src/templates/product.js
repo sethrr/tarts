@@ -2,44 +2,10 @@ import React, { useContext } from "react";
 import { graphql } from "gatsby";
 import Image from "gatsby-image";
 import { StateContext, DispatchContext } from "../components/context";
-import { useShoppingCart, formatCurrencyString } from "use-shopping-cart";
-import styled from 'styled-components';
+import { useShoppingCart } from "use-shopping-cart";
 
-const TartGrid = styled.div`
-display: grid;
-grid-gap: 2rem;
-grid-template-columns: .33fr .5fr;
-ul {
-  list-style-type: none;
-  padding-left: 0;
-}
-li {
-display: inline-block;
-color: var(--red);
-}
-.info-container {
-  border: 2px solid var(--lightbrown);
-  padding: 2rem;
-  flex-direction: column;
-align-content: flex-start;
-align-items: flex-start;
-justify-content: flex-start;
-}
-.order-btns {
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-button {
-  margin-top: 1rem;
-}
-}
-.cart-msg {
 
-  p {
-    color: var(--yellow);
-}
-}
-`;
+
 const Product = ({ data }) => {
   const {
     title,
@@ -57,11 +23,6 @@ const Product = ({ data }) => {
   
   console.log(addItem)
 
-  const formattedPrice = formatCurrencyString({
-    value: 3 * 100,
-    currency: "USD",
-    language: "en-US",
-  });
 
   const addToCart = () => {
     addItem(
@@ -85,7 +46,7 @@ const Product = ({ data }) => {
   return (
     <>
      
-      <TartGrid>
+      <div>
       <Image fluid={image.asset.fluid} />
       <div>
         <div className="info-container">
@@ -107,7 +68,7 @@ const Product = ({ data }) => {
    
               </div>
       </div>
-    </TartGrid>
+    </div>
    
  
     

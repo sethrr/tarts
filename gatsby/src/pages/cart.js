@@ -3,7 +3,7 @@ import SEO from '../components/SEO';
 import Cart from '../components/cart/cart';
 
 
-export default function OrderPage({ }) {
+export default function OrderPage() {
   
   return (
     <>

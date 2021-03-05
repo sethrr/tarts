@@ -1,12 +1,12 @@
 import { Link } from 'gatsby';
 import React from 'react';
-import { ItemsGrid, ItemStyles } from '../styles/Grids';
+
 
 export default function ItemGrid({items}) {
     return (
-        <ItemsGrid>
+        <div>
             {items.map((item) => (
-                <ItemStyles key={item.slug.current}>
+                <div key={item.slug.current}>
                     <Link to={`/poptart/${item.slug.current}`}>
                     <img src={`${item.image.asset.url}?w=600&h=400&fit=crop`} 
                     alt={item.name}
@@ -26,8 +26,8 @@ export default function ItemGrid({items}) {
                         <Link to={`/poptart/${item.slug.current}`}>
                     <button className="item-cta btn"> Order Now</button>
                     </Link>
-                </ItemStyles>
+                </div>
             ))}
-        </ItemsGrid>
+        </div>
     )
 }
