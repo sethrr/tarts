@@ -1,51 +1,57 @@
-import { createGlobalStyle } from 'styled-components';
-import bg from '../assets/images/bg.svg';
-import sprinks from '../assets/images/sprinkles.svg';
-import stripes from '../assets/images/stripes.svg';
+import { createGlobalStyle } from "styled-components";
+import "normalize.css";
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    --red: #8d6a62;
+    --primary: #8d6a62;
+    --secondary: #e2a99c;
+    --tertiary: #F9F3EF;
     --black: #2E2E2E;
-    --yellow: #e2a99c;
     --white: #fff;
     --grey: #efefef;
-    --lightbrown: #f9f3ef;
-    --primary: #8d6a62;
-    --primary-light: #f4f4e9;
-    --secondary: #e2a99c; 
-
+    --spacer: 1rem;
+    --gap: 2.5rem;
+    --max-width: 1200px;
   }
+
   html {
-    background-image: url(${sprinks});
-    background-size: 450px;
-    background-attachment: fixed;
-    font-size: 10px;
+    margin: 0;
+    font-size: 16px;
+  }
+  
+  * {
+    box-sizing: border-box;
   }
 
   body {
-    font-size: 2rem;
-  }
+	display: flex;
+	flex-direction: column;
+  font-size: 2rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+
+	&.fixed {
+		overflow: hidden;
+	}
+}
+
+main {
+	flex: 1 0 auto;
+	position: relative;
+}
+
+#siteHeader {
+  top: 0;
+  width: 100%;
+  z-index: 200;
+  position: fixed;
+  margin: 0;
+  padding: 0;
+}
 
   fieldset {
     border-color: rgba(0,0,0,0.1);
     border-width: 1px;
-  }
-
-  button {
-    background: var(--red);
-    color: white;
-    border: 0;
-    padding: 0.6rem 1rem;
-    border-radius: 2px;
-    cursor: pointer;
-    --cast: 2px;
-    box-shadow: var(--cast) var(--cast) 0 var(--grey);
-    text-shadow: 0.5px 0.5px 0 rgba(0,0,0,0.2);
-    transition: all 0.2s;
-    &:hover {
-      --cast: 4px;
-    }
   }
 
   .gatsby-image-wrapper img[src*="base64\\,"] {
@@ -57,24 +63,20 @@ const GlobalStyles = createGlobalStyle`
   body::-webkit-scrollbar {
     width: 12px;
   }
+
   html {
     scrollbar-width: thin;
-    scrollbar-color: var(--red) var(--white);
+    scrollbar-color: var(--primary) var(--white);
   }
+
   body::-webkit-scrollbar-track {
     background: var(--white);
   }
+
   body::-webkit-scrollbar-thumb {
-    background-color: var(--red) ;
+    background-color: var(--primary) ;
     border-radius: 6px;
     border: 3px solid var(--white);
-  }
-
-  hr {
-    border: 0;
-    height: 8px;
-    background-image: url(${stripes});
-    background-size: 1500px;
   }
 
   img {
@@ -87,11 +89,6 @@ const GlobalStyles = createGlobalStyle`
     display: inline-block;
   }
 
-  button[disabled] {
-    pointer-events: none;
-    cursor: not-allowed;
-    opacity: 0.3;
-  }
 
 `;
 

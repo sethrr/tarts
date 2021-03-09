@@ -1,9 +1,7 @@
 import React from 'react';
 import Layout from './src/components/Layout';
-import { OrderProvider } from './src/components/OrderContext';
 import { loadStripe } from '@stripe/stripe-js';
 import { CartProvider } from 'use-shopping-cart';
-import { useSiteMetadata } from './src/components/useSiteMetadata';
 import SiteProvider from './src/components/context';
 
 const stripePromise = loadStripe(process.env.GATSBY_STRIPE_API_PUBLIC);

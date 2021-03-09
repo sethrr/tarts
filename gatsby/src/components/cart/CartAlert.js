@@ -13,7 +13,7 @@ position: fixed;
 bottom: 0;
 right: 0;
 padding: 3rem;
-border: 5px solid var(--yellow);
+border: 5px solid var(--secondary);
 background: white;
 width: 20%;
 transition: "right 250ms ease-in-out";
@@ -25,7 +25,7 @@ z-index: 99999;
 
 .remove {
     background: none;
-    color: var(--red);
+    color: var(--primary);
     font-size: 5rem;
     position: absolute;
     top: .5rem;

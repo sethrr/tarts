@@ -17,7 +17,7 @@ ul {
 }
 li {
 display: inline-block;
-color: var(--red);
+color: var(--primary);
 }
 .info-container {
   border: 2px solid var(--lightbrown);
@@ -38,7 +38,7 @@ button {
 .cart-msg {
 
   p {
-    color: var(--yellow);
+    color: var(--secondary);
 }
 }
 `;

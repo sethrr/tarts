@@ -8,13 +8,13 @@ import { Link } from 'gatsby';
 import Image from "gatsby-image";
 
 const FeaturedTartsSection = styled.div`
-background: var(--red);
+background: var(--primary);
 padding: 10rem 0;
 margin-left: -2rem;
 margin-right: -2rem;
 
 .mark, .btn {
-  background: var(--yellow);
+  background: var(--secondary);
   color: var(--black);
 }
 
@@ -31,7 +31,7 @@ grid-template-columns: 1fr 1fr;
 width: 100%;
 
 h1 strong {
-  color: var(--red);
+  color: var(--primary);
 }
 .hero-sidebar {
   display: flex;
@@ -80,7 +80,7 @@ export default function HomePage({ data }) {
 
       <HomeHeadline>
       <div className="hero">
-      <div class="image-container">
+      <div className="image-container">
       <Image fluid={homeData.featuredImage.asset.fluid} height={500} width={500}/>
       </div>
       </div>

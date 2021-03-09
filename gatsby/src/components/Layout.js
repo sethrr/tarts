@@ -9,15 +9,12 @@ import Typography from '../styles/Typography';
 import stripes from '../assets/images/stripes.svg';
 import CartAlert from './cart/CartAlert';
 
-const SiteBorderStyles = styled.div`
-  max-width: 80%;
-  margin: 12rem auto 4rem auto;
-  margin-top: clamp(2rem, 10vw, 12rem);
-  background: white url(${stripes});
+const MainStyles = styled.main`
+  max-width: var(--max-width);
+  margin: 0 auto;
   padding: 5px;
   padding: clamp(5px, 1vw, 25px);
   box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.044);
-  border: 5px solid var(--lightbrown);
   background-size: 80em;
   @media (max-width: 1100px) {
     margin-left: 1.5rem;
@@ -35,15 +32,17 @@ export default function Layout({ children }) {
     <>
       <GlobalStyles />
       <Typography />
-      <SiteBorderStyles>
-        <ContentStyles>
+        <div id="siteHeader">
           <Nav />
+          </div>
+      <MainStyles>
+        <ContentStyles>
           <GlobalAlert />
           {children}
           <CartAlert />
           <Footer />
         </ContentStyles>
-      </SiteBorderStyles>
+      </MainStyles>
     </>
   );
 }

@@ -31,7 +31,7 @@ align-self: flex-start;
   }
   button {
     font-size: 1.5rem;
-    background: var(--yellow);
+    background: var(--secondary);
   }
 
   button + button {
@@ -39,7 +39,7 @@ align-self: flex-start;
   }
   .remove {
     background: none;
-    color: var(--red);
+    color: var(--primary);
     font-size: 3rem;
     position: absolute;
     top: 0;
